@@ -1,8 +1,8 @@
-ï»¿#pragma once
+#pragma once
 
 #include "Audio.h"
-#include "DirectXCommon.h"
 #include "DebugText.h"
+#include "DirectXCommon.h"
 #include "Input.h"
 #include "Model.h"
 #include "SafeDelete.h"
@@ -12,43 +12,59 @@
 #include <DirectXMath.h>
 
 /// <summary>
-/// ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³
+/// ƒQ[ƒ€ƒV[ƒ“
 /// </summary>
 class GameScene {
 
-  public: // ãƒ¡ãƒ³ãƒé–¢æ•°
+  public: // ƒƒ“ƒoŠÖ”
 	/// <summary>
-	/// ã‚³ãƒ³ã‚¹ãƒˆã‚¯ãƒ©ã‚¿
+	/// ƒRƒ“ƒXƒgƒNƒ‰ƒ^
 	/// </summary>
 	GameScene();
 
 	/// <summary>
-	/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	/// ƒfƒXƒgƒ‰ƒNƒ^
 	/// </summary>
 	~GameScene();
 
 	/// <summary>
-	/// åˆæœŸåŒ–
+	/// ‰Šú‰»
 	/// </summary>
 	void Initialize();
 
 	/// <summary>
-	/// æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†
+	/// –ˆƒtƒŒ[ƒ€ˆ—
 	/// </summary>
 	void Update();
 
 	/// <summary>
-	/// æç”»
+	/// •`‰æ
 	/// </summary>
 	void Draw();
 
-  private: // ãƒ¡ãƒ³ãƒå¤‰æ•°
+  private: // ƒƒ“ƒo•Ï”
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
 	DebugText* debugText_ = nullptr;
+	// ƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹
+	uint32_t textureHandle_ = 0;
+	// ƒXƒvƒ‰ƒCƒg
+	Sprite* sprite_ = nullptr;
+	// 3Dƒ‚ƒfƒ‹
+	Model* model_ = nullptr;
+	// ƒ[ƒ‹ƒhƒgƒ‰ƒ“ƒXƒtƒH[ƒ€
+	WorldTransform worldTransform_;
+	// ƒrƒ…[ƒvƒƒWƒFƒNƒVƒ‡ƒ“
+	ViewProjection viewProjection_;
+	// ƒTƒEƒ“ƒhƒf[ƒ^ƒnƒ“ƒhƒ‹
+	uint32_t soundDataHandle_ = 0;
+	// ‰¹ºÄ¶ƒnƒ“ƒhƒ‹
+	uint32_t voiceHandle_ = 0;
+	// ’l‚ğ•\¦‚µ‚½‚¢•Ï”
+	int32_t value_ = 0;
 
 	/// <summary>
-	/// ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ç”¨
+	/// ƒQ[ƒ€ƒV[ƒ“—p
 	/// </summary>
 };
