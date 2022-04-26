@@ -24,18 +24,16 @@ void GameScene::Initialize() {
 	// 3Dモデルの生成
 	model_ = Model::Create();
 	for (size_t i = 0; i < _countof(worldTransform_); i++) {
-		// X,Y,Z方向のスケーリングを設定
-		worldTransform_[i].scale_ = {5.0f, 5.0f, 5.0f};
-		// X,Y,Z軸周りの回転角を設定
-		worldTransform_[i].rotation_ = {0, 0, 0};
-		// X,Y,Z軸周りの平行を設定
-		if (i < 9.0f) {
-			worldTransform_[i].translation_ = {-40.0f + i * 10.0f, 20.0f, 0};
-		} else{
-			worldTransform_[i].translation_ = {-40.0f + (i - 9) * 10.0f, -20.0f, 0};
+		for (size_t j = 0; j < _countof(worldTransform_); j++) {
+			// X,Y,Z方向のスケーリングを設定
+			worldTransform_[i][j].scale_ = {1.0f, 1.0f, 1.0f};
+			// X,Y,Z軸周りの回転角を設定
+			worldTransform_[i][j].rotation_ = {0, 0, 0};
+			// X,Y,Z軸周りの平行を設定
+			worldTransform_[i][j].translation_ = {-12.0f + j * 3.0f, -12.0f + i * 3.0f, 0};
+			// ワールドトランスフォームの初期化
+			worldTransform_[i][j].Initialize();
 		}
-		// ワールドトランスフォームの初期化
-		worldTransform_[i].Initialize();
 	}
 	//カメラ視点座標を設定
 	viewProjection_.eye = {0, 0, -50};
@@ -165,7 +163,11 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	for (size_t i = 0; i < _countof(worldTransform_); i++) {
-		model_->Draw(worldTransform_[i], viewProjection_, textureHandle_);
+		for (size_t j = 0; j < _countof(worldTransform_); j++) {
+			if (i % 2 != 1 || j % 2 != 1) {
+				model_->Draw(worldTransform_[i][j], viewProjection_, textureHandle_);
+			}
+		}
 	}
 
 	// 3Dオブジェクト描画後処理
